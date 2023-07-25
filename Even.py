@@ -15,10 +15,10 @@ app.layout = html.Div([
     dash.dependencies.Input('url', 'pathname')
 )
 def update_output(pathname):
-    a = []
-    for i in range(50, 151, 2):
-        a.append(i)
-    return str(a)
+    p = []
+    for j in range(200, 300, 2):
+        p.append(j)
+    return str(p)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
