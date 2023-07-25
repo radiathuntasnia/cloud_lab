@@ -5,6 +5,7 @@ import dash_html_components as html
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
+    dcc.Location(id='url'),  # Add the dcc.Location component
     html.H1('List of Even Numbers'),
     html.Div(id='even-numbers'),
 ])
@@ -13,7 +14,7 @@ app.layout = html.Div([
     dash.dependencies.Output('even-numbers', 'children'),
     dash.dependencies.Input('url', 'pathname')
 )
-def update_output():
+def update_output(pathname):
     a = []
     for i in range(50, 151, 2):
         a.append(i)
@@ -21,4 +22,5 @@ def update_output():
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
 
