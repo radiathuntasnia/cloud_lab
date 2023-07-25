@@ -1,23 +1,23 @@
-from flask import Flask
+import streamlit as st
 
+def get_even_numbers():
+    p = []
+    for j in range(200, 300, 1):
+        if j % 2 == 0:
+            p.append(j)
+    return p
 
-# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
-# called `app` in `main.py`.
-app = Flask(__name__)
-
-
-@app.route('/')
-def hello():
+def main():
     """Return a friendly HTTP greeting."""
-    a = []
-    for i in range(50,150,1):
-        if (i%2) == 0:
-            a.append(i)
-    return a
+    st.title("Even Numbers Generator")
+    st.write("This app generates a list of even numbers between 200 and 300.")
 
+    # Get the list of even numbers
+    even_numbers = get_even_numbers()
+
+    # Display the list on the web interface
+    st.write("List of Even Numbers:")
+    st.write(even_numbers)
 
 if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. You
-    # can configure startup instructions by adding `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    main()
