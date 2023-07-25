@@ -1,4 +1,4 @@
-pip install streamlit
+!pip install streamlit
 import streamlit as st
 
 def get_even_numbers():
