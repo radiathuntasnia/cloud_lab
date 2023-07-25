@@ -1,23 +1,24 @@
-import streamlit as st
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
 
-def get_even_numbers():
-    p = []
-    for j in range(200, 300, 1):
-        if j % 2 == 0:
-            p.append(j)
-    return p
+app = dash.Dash(__name__)
 
-def main():
-    """Return a friendly HTTP greeting."""
-    st.title("Even Numbers Generator")
-    st.write("This app generates a list of even numbers between 200 and 300.")
+app.layout = html.Div([
+    html.H1('List of Even Numbers'),
+    html.Div(id='even-numbers'),
+])
 
-    # Get the list of even numbers
-    even_numbers = get_even_numbers()
-
-    # Display the list on the web interface
-    st.write("List of Even Numbers:")
-    st.write(even_numbers)
+@app.callback(
+    dash.dependencies.Output('even-numbers', 'children'),
+    dash.dependencies.Input('url', 'pathname')
+)
+def update_output():
+    a = []
+    for i in range(50, 151, 2):
+        a.append(i)
+    return str(a)
 
 if __name__ == '__main__':
-    main()
+    app.run_server(debug=True)
+
